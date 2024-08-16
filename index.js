@@ -5,6 +5,7 @@ const cors = require("cors");
 const { signup } = require("./controller/signup");
 const { login } = require("./controller/login");
 const { client } = require("./mongodb/client");
+const { uploadProduct } = require("./controller/upload");
 const app = express();
 
 const port = process.env.port || 5000;
@@ -24,6 +25,9 @@ async function run() {
     // await client.db("admin").command({ ping: 1 });
     app.post("/signup", async (req, res) => await signup(req, res));
     app.post("/login", async (req, res) => await login(req, res));
+    //uploading product
+    app.post('/upload', async(req, res) => await uploadProduct(req, res));
+    
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
