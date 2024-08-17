@@ -41,6 +41,7 @@ const allProduct = async (req, res) => {
     default:
       sortQuery = {}; // Default sort (can be omitted if not needed)
   }
+  //yet to do price range
 
   try {
     const totalProduct = await dataCollection.countDocuments(query);
