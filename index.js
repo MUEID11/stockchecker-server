@@ -29,7 +29,7 @@ async function run() {
     app.post("/signup", async (req, res) => await signup(req, res));
     app.post("/login", async (req, res) => await login(req, res));
     //uploading product
-    app.post('/upload', async(req, res) => await uploadProduct(req, res));
+    app.post('/upload',jwtVerify, async(req, res) => await uploadProduct(req, res));
     app.get('/all', async(req,res) => await allProduct(req, res));
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
