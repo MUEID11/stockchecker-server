@@ -1,21 +1,31 @@
 const { dataCollection } = require("../mongoDB/collections");
 
 const allProduct = async (req, res) => {
-  const search = req.query.search || "";
-  const sort = req.query.sort || "";
-  const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 10;
+  const search = req?.query?.search || "";
+  const sort = req?.query?.sort || "";
+  const category = req?.query?.category;
+  const price = req?.query?.price;
+  const page = parseInt(req?.query?.page) || 1;
+  const limit = parseInt(req?.query?.limit) || 10;
   const skip = (page - 1) * limit;
-
+  console.log(category);
   // Build the query object
-  let query = {
-    $or: [
-      { name: { $regex: String(search), $options: "i" } },
-      { category: { $regex: String(search), $options: "i" } },
-      { brandName: { $regex: String(search), $options: "i" } },
-    ],
-  };
+  //   let query = {
+  //     $or: [
+  //       { name: { $regex: String(search), $options: "i" } },
+  //     //   { category: { $regex: String(search), $options: "i" } },
+  //     //   { brandName: { $regex: String(search), $options: "i" } },
+  //       {category:category}
+  //     ],
+  //   };
 
+  let query = {};
+  if (search) {
+    query.name = new RegExp(search, "i");
+  }
+  if (category) {
+    query.category = category;
+  }
   // Build the sort query
   let sortQuery = {};
   switch (sort) {
@@ -31,9 +41,6 @@ const allProduct = async (req, res) => {
     default:
       sortQuery = {}; // Default sort (can be omitted if not needed)
   }
-
-  console.log("Query:", query);
-  console.log("Sort Query:", sortQuery);
 
   try {
     const totalProduct = await dataCollection.countDocuments(query);
