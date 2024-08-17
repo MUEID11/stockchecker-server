@@ -3,7 +3,7 @@ const { jwtSign } = require("./jwtsign");
 
 const signup = async (req, res) => {
   const { name, email, photoURL } = req.body;
-
+  console.log(name,email)
   // Basic input validation
   if (!name || !email) {
     return res.status(400).send({ message: "Name and email are required" });
