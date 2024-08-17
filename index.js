@@ -6,6 +6,7 @@ const { signup } = require("./controller/signup");
 const { login } = require("./controller/login");
 const { client } = require("./mongodb/client");
 const { uploadProduct } = require("./controller/upload");
+const { allProduct } = require("./controller/allproducts");
 const app = express();
 
 const port = process.env.port || 5000;
@@ -27,7 +28,7 @@ async function run() {
     app.post("/login", async (req, res) => await login(req, res));
     //uploading product
     app.post('/upload', async(req, res) => await uploadProduct(req, res));
-    
+    app.get('/all', async(req,res) => await allProduct(req, res));
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
