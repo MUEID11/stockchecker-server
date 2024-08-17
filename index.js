@@ -14,7 +14,7 @@ const port = process.env.port || 5000;
 app.use(
   cors({
     origin: ["http://localhost:5173", "http://localhost:5174"],
-    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
 
@@ -29,8 +29,12 @@ async function run() {
     app.post("/signup", async (req, res) => await signup(req, res));
     app.post("/login", async (req, res) => await login(req, res));
     //uploading product
-    app.post('/upload',jwtVerify, async(req, res) => await uploadProduct(req, res));
-    app.get('/all', async(req,res) => await allProduct(req, res));
+    app.post(
+      "/upload",
+      jwtVerify,
+      async (req, res) => await uploadProduct(req, res)
+    );
+    app.get("/all", async (req, res) => await allProduct(req, res));
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
