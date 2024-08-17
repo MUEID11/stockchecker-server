@@ -7,7 +7,7 @@ const jwtVerify = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "Unauthorize access" });
   }
-  jwt.verify(token, process.env.SECRET_ACCESS_TOKEN, (err, decoded) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
     if (err) {
       console.log(err);
       return res.status(403).json({ message: "Forbidden access" });

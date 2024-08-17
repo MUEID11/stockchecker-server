@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 
 // Function to sign JWT with email and secret
 const jwtSign = (email) => {
-  if (!process.env.SECRET_ACCESS_TOKEN) {
-    throw new Error('SECRET_ACCESS_TOKEN environment variable is not set.');
+  if (!process.env.ACCESS_TOKEN_SECRET) {
+    throw new Error('ACCESS_TOKEN_SECRET environment variable is not set.');
   }
 
-  return jwt.sign({ email }, process.env.SECRET_ACCESS_TOKEN, { expiresIn: '7d' });
+  return jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7d' });
 };
 
 module.exports = { jwtSign };
