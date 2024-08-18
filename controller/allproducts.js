@@ -3,11 +3,11 @@ const { dataCollection } = require("../mongo/collections");
 const allProduct = async (req, res) => {
   const search = req.query?.search || "";
   const sort = req.query?.sort || "";
+  const page = parseInt(req.query?.page) || 1;
+  const limit = parseInt(req.query?.limit) || 10;
   const category = req.query?.category || "";
   const brand = req.query?.brand || "";
   // const price = req?.query?.price;
-  const page = parseInt(req.query?.page) || 1;
-  const limit = parseInt(req.query?.limit) || 10;
   const skip = (page - 1) * limit;
   // Build the query object
   //   let query = {
@@ -54,7 +54,7 @@ const allProduct = async (req, res) => {
       .skip(skip)
       .limit(limit)
       .toArray();
-
+    
     res.send({
       data: result,
       totalProduct,
