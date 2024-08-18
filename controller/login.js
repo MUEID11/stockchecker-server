@@ -1,11 +1,11 @@
-const { userCollection } = require("../mongoDB/collections");
+const { userCollection } = require("../mongo/collections");
 const { jwtSign } = require("./jwtsign");
 
 const login = async (req, res) => {
   const { email } = req.body;
   console.log(`login`, email);
   const user = await userCollection.findOne({ email });
-  console.log(user)
+  console.log(user);
   if (!user && user?.status !== "active") {
     return res.status(401).send({ message: "Unactive user" });
   }

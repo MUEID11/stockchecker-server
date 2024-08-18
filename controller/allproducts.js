@@ -1,4 +1,4 @@
-const { dataCollection } = require("../mongoDB/collections");
+const { dataCollection } = require("../mongo/collections");
 
 const allProduct = async (req, res) => {
   const search = req?.query?.search || "";

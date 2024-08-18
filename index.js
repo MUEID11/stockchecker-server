@@ -7,7 +7,7 @@ const { login } = require("./controller/login");
 const { uploadProduct } = require("./controller/upload");
 const { allProduct } = require("./controller/allproducts");
 const { jwtVerify } = require("./controller/jwtverify");
-const { client } = require("./client");
+const { client } = require("./mongo/client");
 
 const app = express();
 

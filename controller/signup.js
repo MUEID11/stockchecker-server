@@ -1,9 +1,9 @@
-const { userCollection } = require("./../mongoDB/collections");
+const { userCollection } = require("../mongo/collections");
 const { jwtSign } = require("./jwtsign");
 
 const signup = async (req, res) => {
   const { name, email, photoURL } = req.body;
-  console.log(name,email)
+  console.log(name, email);
   // Basic input validation
   if (!name || !email) {
     return res.status(400).send({ message: "Name and email are required" });
@@ -21,13 +21,15 @@ const signup = async (req, res) => {
       email,
       photoURL,
       status: "active",
-      role: "user"
+      role: "user",
     });
 
     // Generate JWT token
     const token = jwtSign({ name, email });
 
-    return res.status(201).send({ message: "User created successfully", token });
+    return res
+      .status(201)
+      .send({ message: "User created successfully", token });
   } catch (error) {
     console.error(`Error during signup: ${error.message}`);
     return res.status(500).send({ message: "Internal server error" });

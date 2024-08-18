@@ -1,4 +1,4 @@
-const { client } = require("../client");
+const { client } = require("./client");
 
 const database = client.db("showcase");
 const dataCollection = database.collection("data");
