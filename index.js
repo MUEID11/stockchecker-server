@@ -7,7 +7,8 @@ const { login } = require("./controller/login");
 const { uploadProduct } = require("./controller/upload");
 const { allProduct } = require("./controller/allproducts");
 const { jwtVerify } = require("./controller/jwtverify");
-const { client } = require("./mongoDB/client");
+const { client } = require("./client");
+
 const app = express();
 
 const port = process.env.port || 5000;
