@@ -1,4 +1,4 @@
-const { dataCollection } = require("../mongodb/collections");
+const { dataCollection } = require("../collections");
 
 const uploadProduct = async (req, res) => {
     try {
