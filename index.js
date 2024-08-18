@@ -51,7 +51,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.setEncoding("server is running");
+  res.send("server is running");
 });
 app.listen(port, () => {
   console.log(`server is running on ${port}`);
