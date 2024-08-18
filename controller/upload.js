@@ -17,7 +17,7 @@ const uploadProduct = async (req, res) => {
       res.status(500).send({ message: "Failed to upload product" });
     }
   } catch (error) {
-    console.error("Error uploading product:", error);
+    // console.error("Error uploading product:", error);
     res.status(500).send({ message: "Server error while uploading product" });
   }
 };

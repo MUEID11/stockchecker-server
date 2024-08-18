@@ -4,11 +4,11 @@ const allProduct = async (req, res) => {
   const search = req.query?.search || "";
   const sort = req.query?.sort || "";
   const category = req.query?.category || "";
+  const brand = req.query?.brand || "";
   // const price = req?.query?.price;
   const page = parseInt(req.query?.page) || 1;
   const limit = parseInt(req.query?.limit) || 10;
   const skip = (page - 1) * limit;
-  console.log("cat", category);
   // Build the query object
   //   let query = {
   //     $or: [
@@ -25,6 +25,9 @@ const allProduct = async (req, res) => {
   }
   if (category) {
     query.category = category;
+  }
+  if (brand) {
+    query.brandName = brand;
   }
   // Build the sort query
   let sortQuery = {};
